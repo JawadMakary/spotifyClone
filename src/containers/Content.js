@@ -4,7 +4,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import './Content.css'
+import './styles/Content.css'
 // routes config
 import routes from '../routes'
   
