@@ -15,4 +15,9 @@
   font-weight: 800;
   color: white;
   text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.login > a:hover {
+  background-color: white;
+  color: var(--primary-color);
 }

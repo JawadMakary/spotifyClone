@@ -8,7 +8,10 @@ import Login from './screens/Login';
 import { useState,useEffect } from 'react';
 import Home from './screens/Home';
 import { getTokenFromResponse } from './api/spotify';
+// to connect spotify to reactjs
+import SpotifyWebApi from 'spotify-web-api-js';
 
+const spotify=new SpotifyWebApi()
 function App() {
   const [token,setToken]=useState(null)
  
@@ -22,6 +25,10 @@ function App() {
  console.log(_token)
   if(_token){
     setToken(_token)
+    spotify.setAccessToken(_token)
+    spotify.getMe().then((user)=>{
+      console.log(user)
+    })
   }
 },[])
   const Layout = lazy(() => import('./containers/Layout'));
@@ -38,7 +45,7 @@ function App() {
            
             <Switch>
            {token ?(
-           <Route path="/" name="Home" render={props => {return (<Layout {...props}/>);}} />
+           <Route path="/"  render={props => {return (<Layout {...props}/>);}} />
            ):(
           <Login /> 
            )}

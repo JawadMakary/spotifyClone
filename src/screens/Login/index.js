@@ -2,6 +2,7 @@ import React from 'react'
 import './Login.css'
 import {accessUrl} from '../../api/spotify'
 import { useState } from 'react'
+// npm i spotify-web-api-js
 const Login = () => {
     return (
         <div className='login'>
