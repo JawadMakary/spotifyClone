@@ -7,14 +7,14 @@ import { withNamespaces } from 'react-i18next';
 import Login from './screens/Login';
 import { useState,useEffect } from 'react';
 import Home from './screens/Home';
+import {useStateValue} from './state/StateProvider'
 import { getTokenFromResponse } from './api/spotify';
 // to connect spotify to reactjs
 import SpotifyWebApi from 'spotify-web-api-js';
-
 const spotify=new SpotifyWebApi()
 function App() {
   const [token,setToken]=useState(null)
- 
+  const[{user},dispatch]=useStateValue()
 
  useEffect(()=>{
  
@@ -25,11 +25,19 @@ function App() {
  console.log(_token)
   if(_token){
     setToken(_token)
+
+  
     spotify.setAccessToken(_token)
     spotify.getMe().then((user)=>{
-      console.log(user)
+      dispatch({
+        type:'SET_USER',
+        user:user
+      })
+     
+
     })
   }
+  console.log(user)
 },[])
   const Layout = lazy(() => import('./containers/Layout'));
   const loading = (
