@@ -13,7 +13,7 @@ import { getTokenFromResponse } from './api/spotify';
 import SpotifyWebApi from 'spotify-web-api-js';
 const spotify=new SpotifyWebApi()
 function App() {
-  const[{user,token},dispatch]=useStateValue()
+  const[{user,token,playlists},dispatch]=useStateValue()
 
  useEffect(()=>{
   const hash=getTokenFromResponse()
@@ -33,10 +33,17 @@ function App() {
         user:user
       })
     })
+    spotify.getUserPlaylists().then((playlists)=>{
+      dispatch({
+        type:'SET_PLAYLISTS',
+        playlists:playlists
+      })
+    })
   }
-  console.log(token)
-   console.log(user)
-},[token,user])
+  console.log('this is my playlist data--->',playlists)
+   console.log('this is my token---->',token)
+   console.log('this is the username--->',user)
+},[token,user,playlists])
   const Layout = lazy(() => import('./containers/Layout'));
   const loading = (
     <div className="pt-3 text-center">

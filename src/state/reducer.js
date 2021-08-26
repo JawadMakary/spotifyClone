@@ -3,7 +3,7 @@ export const initialState={
     playlists:[],
     playing:false,
     // for testing purposes put initialvalue for token(so it wont ask for auth everytime we refresh)
-    token:'ahsj',
+    token:null,
     item:null,
 }
 const reducer=(state,action)=>{
@@ -21,6 +21,11 @@ switch(action.type){
                 ...state,
                 token:action.token
             }
+            case "SET_PLAYLISTS":
+                return {
+                  ...state,
+                  playlists: action.playlists,
+                };
         default:
             return state;
 }
