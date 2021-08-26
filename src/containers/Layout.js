@@ -21,7 +21,7 @@ const Layout = ({spotify}) => {
           {/* <Content /> */}
         </div>
       </div>
-        {/* <Footer /> */}
+         <Footer /> 
     </div>
   );
 };
