@@ -3,17 +3,25 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Content from "../containers/Content";
 import './styles/Layout.css'
+import Sidebar from "./Sidebar";
+import Body from "../components/Body";
 
-const Layout = () => {
+const Layout = ({spotify}) => {
   return (
-    <div className="c-app c-default-layout">
-        <Header />
-      <div className="c-wrapper">
-        <div className="c-body">
-          <Content />
+    <div className="player">
+      <div className="player_body">
+
+     
+      
+        <Sidebar />
+        <Body />
+        </div>
+      <div className="">
+        <div className="">
+          {/* <Content /> */}
         </div>
       </div>
-        <Footer />
+        {/* <Footer /> */}
     </div>
   );
 };

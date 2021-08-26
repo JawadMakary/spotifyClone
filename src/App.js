@@ -13,32 +13,30 @@ import { getTokenFromResponse } from './api/spotify';
 import SpotifyWebApi from 'spotify-web-api-js';
 const spotify=new SpotifyWebApi()
 function App() {
-  const [token,setToken]=useState(null)
-  const[{user},dispatch]=useStateValue()
+  const[{user,token},dispatch]=useStateValue()
 
  useEffect(()=>{
- 
   const hash=getTokenFromResponse()
  window.location.hash=''
 // _ => temporary
  const _token=hash.access_token;
- console.log(_token)
   if(_token){
-    setToken(_token)
-
-  
+    
+    dispatch({
+      type:"SET_TOKEN",
+      token:_token,
+    })
     spotify.setAccessToken(_token)
     spotify.getMe().then((user)=>{
       dispatch({
         type:'SET_USER',
         user:user
       })
-     
-
     })
   }
-  console.log(user)
-},[])
+  console.log(token)
+   console.log(user)
+},[token,user])
   const Layout = lazy(() => import('./containers/Layout'));
   const loading = (
     <div className="pt-3 text-center">
@@ -53,7 +51,7 @@ function App() {
            
             <Switch>
            {token ?(
-           <Route path="/"  render={props => {return (<Layout {...props}/>);}} />
+           <Route path="/"  render={props => {return (<Layout spotify={spotify}/>);}} />
            ):(
           <Login /> 
            )}
