@@ -13,7 +13,7 @@ import { getTokenFromResponse } from './api/spotify';
 import SpotifyWebApi from 'spotify-web-api-js';
 const spotify=new SpotifyWebApi()
 function App() {
-  const[{user,token,playlists},dispatch]=useStateValue()
+  const[{user,token,playlists,discover_weekly},dispatch]=useStateValue()
 
  useEffect(()=>{
   const hash=getTokenFromResponse()
@@ -39,6 +39,14 @@ function App() {
         playlists:playlists
       })
     })
+    spotify.getPlaylist('1piumUblin314P9W7SFR2z').then((response)=>
+    dispatch({
+      type:'SET_DISCOVER_WEEKLY',
+      discover_weekly:response
+    })
+    )
+
+
   }
   console.log('this is my playlist data--->',playlists)
    console.log('this is my token---->',token)
@@ -58,7 +66,7 @@ function App() {
            
             <Switch>
            {token ?(
-           <Route path="/"  render={props => {return (<Layout spotify={spotify}/>);}} />
+           <Route path="/"  render={() => {return (<Layout spotify={spotify}/>);}} />
            ):(
           <Login /> 
            )}

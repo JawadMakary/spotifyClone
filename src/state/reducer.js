@@ -5,6 +5,7 @@ export const initialState={
     // for testing purposes put initialvalue for token(so it wont ask for auth everytime we refresh)
     token:null,
     item:null,
+    discover_weekly:null
 }
 const reducer=(state,action)=>{
 // console.log(action)
@@ -26,6 +27,11 @@ switch(action.type){
                   ...state,
                   playlists: action.playlists,
                 };
+                case "SET_DISCOVER_WEEKLY":
+                    return {
+                      ...state,
+                      discover_weekly: action.discover_weekly,
+                    };
         default:
             return state;
 }

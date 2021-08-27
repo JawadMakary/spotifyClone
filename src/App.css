@@ -1,6 +1,10 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: spotify-circular, spotify-circular-cyrillic,
+    spotify-circular-arabic, spotify-circular-hebrew, "Helvetica Neue",
+    helvetica, arial, "Hiragino Kaku Gothic Pro", Meiryo, "MS Gothic",
+    sans-serif;
   box-sizing: border-box;
 }
 
