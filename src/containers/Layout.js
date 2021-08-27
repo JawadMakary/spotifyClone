@@ -10,15 +10,12 @@ const Layout = ({spotify}) => {
   return (
     <div className="player">
       <div className="player_body">
-
-     
-      
         <Sidebar />
-        <Body />
+        <Body spotify={spotify} />
         </div>
       <div className="">
         <div className="">
-          {/* <Content /> */}
+         {/* <Content />  */}
         </div>
       </div>
          <Footer /> 
